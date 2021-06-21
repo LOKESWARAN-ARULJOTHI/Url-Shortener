@@ -1,0 +1,149 @@
+{% extends "layout.html" %}
+{% block title %}
+URL Shortener
+{% endblock %}
+{% block content %}
+
+
+<!-- First section  -->
+<section
+class="text-center p-sm-5 p-3 text-center text-light text-sm-start pb-lg-0 greenbg"
+>
+<div class="-fuild-fuild">
+    <div
+    class="
+    d-flex
+    flex-column flex-sm-row
+    justify-content-around
+    align-items-center
+    "
+    >
+    
+    <div class="text-white">
+        {% if user.is_authenticated   %}
+            <h1>Welcome to URL Shortener,<span class="text-danger"> {{user.username}}</span></h1>
+            <h2 class="mb-0">Do you want to shorten your URL?</h2>
+            <br />
+            <p class="lead mb-0">
+                Have trouble with sharing long URLs. We can help you. 
+            </p>
+            <p class="lead-sm">
+            Share our beautiful shortened URL instead of a ugly
+            long URL.</p>
+        {% else %}
+            <h1>Welcome to URL Shortener</h1>
+            <h2 class="mb-0">Do you want to shorten your URL?</h2>
+            <br />
+            <p class="lead mb-0">
+                Have trouble with sharing long URLs. We can help you. 
+            </p>
+            <p class="lead-sm">
+            Share our beautiful shortened URL instead of a ugly
+            long URL.</p>
+            <a href="{{url_for('login')}}"><button class="btn btn-dark btn-md">Log In</button></a>
+        {% endif %}
+    </div>
+    <img
+    src="../static/first.svg"
+    alt=""
+    class="img-fuild"
+    height="300px"
+    />
+</div>
+    </div>
+</section>
+
+<!-- Paste URL  -->
+<section class="px-sm-5 greenbg p-3">
+    <div class="container-fuild">
+        <form method="POST">
+            <div class="input-group mb-3 shorturlbox">
+                <input name="longurl" type="text" class="form-control px-4" placeholder="Paste your lengthy URL to shorten it" autofocus>
+                <button class="btn btn-dark btn-lg" type="submit" id="button-addon2">Shorten</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Copy URL  -->
+{% if shorturl %}
+    <section class="px-sm-5 greenbg p-3">
+        <div class="container-fuild">
+            <div class="input-group mb-3 shorturlbox">
+                <input name="shorturl" type="text" value={{shorturl}} class="form-control px-4" id="shortURL">
+                <button class="btn btn-dark btn-lg"  type="button" value="copy" onclick="myFunction()" >Copy</button>
+            </div>
+        </div>
+    </section>
+{% endif %}
+
+<!-- Shortened URLs -->
+{% if all_urls %}
+
+<section class="px-md-5 pt-3 pb-1" style="background-color: whitesmoke;">
+    <h1 class="text-center">Shortened Links</h1>
+    {% for url in all_urls %}
+    <div class="border border-2 rounded m-md-5 m-3 p-3">
+        <div class="position-relative d-block d-lg-flex align-items-center justify-content-between">
+            <div>
+                <a class="longed text-break" target="_blank" href="{{url.longurl}}">{{url.longurl[0:50]}}{% if url.longurl[51] %}...{% endif %}</a>
+            </div>
+            <div id="date" class="position-absolute  top-50 end-0 translate-middle-y text-center rounded p-1 bg-light " style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; border:0.5px solid rgba(0,0,0,0.4)"><i class="bi bi-calendar-event-fill  px-2"></i>{{url.date.strftime('%Y-%m-%d') }}
+            </div>
+        </div>
+        <hr/>
+        <div class="position-relative d-flex align-items-center justify-content-between">
+            <div>
+                <a class="shorted text-break" target="_blank" href="{{url.shorturl}}">{{url.shorturl}}</a>
+            </div>
+            <div class="position-absolute  top-50 end-0 translate-middle-y text-center rounded p-1 bg-light"  style="box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; border:0.5px solid rgba(0,0,0,0.4)"><i class="bi bi-graph-up text-primary px-2"></i> <span class="rounded px-1 my-1 fw-bold" style="background-color: blue; color:white;">{{url.click}}</span> clicks</div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    
+</section>
+
+<!-- Contact  -->
+<section class="p-5 bg-dark text-light" style="background-color: whitesmoke;">
+    <h1 class="p-3 text-center" id="contact">Contact</h1>
+    <div class="container-fuild">
+        <form  method="POST">
+            <div class="form-group mb-3 shorturlbox">
+                <label for="user_email">Email ID</label>
+                <input type="email" class="form-control" name="user_email" id="email" placeholder="Enter your Email ID" required>
+            </div>
+            <div class="form-group mb-3 shorturlbox">
+                <label for="user_message">Message</label>
+                <textarea class="form-control" name="user_message" placeholder="Enter you message" required></textarea>
+            </div>
+            <div class="form-group mb-3 shorturlbox text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Footer  -->
+<hr style="border: 1px solid black width=100%;" class="bg-dark m-0">
+<footer class="px-5 py-2 bg-dark ">
+    <div class="container">
+        <p class=" m-0 text-center text-light align-items-center">&COPY; <a class="text-light linkedin" href="https://www.linkedin.com/in/lokeswaran-aruljothi/" target="_blank">A Lokeswaran Aruljothi</a>'s Productions</p>
+    </div>
+</footer>
+
+
+
+
+
+
+<script>
+    function myFunction() {
+        var copyText = document.getElementById("shortURL");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+{% block title %}
+Log In
+{% endblock %}
+{% block content %}
+        <div
+            style="height: 92vh"
+            class="d-flex justify-content-center align-items-center loginbg"
+        >
+            <div class="rounded p-5 loginbox">
+                <div class="d-flex justify-content-around align-items-center">
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="username" class="form-label"
+                                >Name</label
+                            >
+                            <div class="inner-addon left-addon">
+                                <i class="bi bi-person-circle"></i>
+                                <input
+                                    name="username"
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Name"
+                                    required
+                                    autofocus
+                                />
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label"
+                                >Email address</label
+                            >
+                            <div class="inner-addon left-addon">
+                                <i class="bi bi-envelope-fill"></i>
+                                <input
+                                    name="email"
+                                    type="email"
+                                    class="form-control"
+                                    placeholder="Email"
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password">Password</label>
+                            <div class="inner-addon left-addon">
+                                <i class="bi bi-lock-fill"></i>
+                                <input
+                                    name="password"
+                                    type="password"
+                                    class="form-control"
+                                    placeholder="Password"
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmpassword">Confirm Password</label>
+                            <div class="inner-addon left-addon">
+                                <i class="bi bi-lock-fill"></i>
+                                <input
+                                    name="confirmpassword"
+                                    type="password"
+                                    class="form-control"
+                                    placeholder="Confirm password"
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div class="text-center">
+
+                            <button type="submit" class="btn btn-primary">
+                                Register
+                            </button>
+                        </div>
+                    </form>
+                    <img
+                        class="d-none d-md-block"
+                        src="../static/signin.svg"
+                        width="250px"
+                        alt=""
+                    />
+                </div>
+            </div>
+        </div>
+{% endblock %}

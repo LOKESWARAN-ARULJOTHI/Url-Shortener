@@ -1,0 +1,79 @@
+body::before{
+    display: block;
+    height: 59px;
+    content: '';
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+#date{
+    z-index: 10;
+}
+a.longed{
+    color: blueviolet;
+}
+a.shorted{
+    color: red;
+}
+
+.greenbg{
+    background-color: #18bc9c;
+}
+.shorturlbox{
+    width: 60%;
+    margin: auto;
+}
+.linkedin{
+    text-decoration: none;
+}
+hr{
+    border: 0;
+    height: 0px !important;
+    border-top: 0.5px solid rgba(0, 0, 0, 0.1) !important;
+  }
+.btn:focus,.btn:active, .form-control:focus,.form-control:active {
+    outline: none !important;
+    box-shadow: none;
+    background-color: #fff;
+    color: black;
+ }
+
+ /* Login styles */
+
+.loginbg{
+    background: #C9D6FF; 
+    background: linear-gradient(to top, #E2E2E2, #C9D6FF);    
+}
+.loginbox{
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; 
+    border:0.5px solid rgba(0,0,0,0.4); 
+    width: 700px;
+    background: #00d2ff; 
+    background: linear-gradient(to right, #c4bbf5, #00d2ff);
+}
+.inner-addon {
+    position: relative;
+}
+.inner-addon .bi-envelope-fill, .bi-lock-fill, .bi-person-circle{
+    position: absolute;
+    padding: 5px 15px;
+    pointer-events: none;
+}
+.left-addon input  { padding-left: 40px; }
+
+/* Small devices or phones */
+@media(max-width:576px){
+    .shorturlbox{
+        width: 100%;
+    }
+    
+}
+
+/* Tabs */
+@media(max-width:768px){
+    .loginbox{
+        width: 80%;
+    }
+    
+}
